@@ -46,3 +46,30 @@ if __name__ == "__main__":
         updates = get_updates()
         for update in updates:
             handle_update(update)
+
+def set_webhook(url, bot_token):
+    requests.post(f'https://api.telegram.org/bot{bot_token}/setWebhook', data={'url': url})
+
+
+
+
+
+
+#webhook
+def handle_update(update, bot_token):
+    # Extract the message from the update
+    message = update['message']['text']
+    
+    # Process the message and generate a response
+    response = "You said: " + message
+    
+    # Send the response back to the user
+    chat_id = update['message']['chat']['id']
+    requests.post(f'https://api.telegram.org/bot{bot_token}/sendMessage', data={'chat_id': chat_id, 'text': response})
+
+# Set the webhook with the URL of your deployed code
+set_webhook("https://startling-brigadeiros-7e4df4.netlify.app", TELEGRAM_BOT_API_KEY)
+
+# Handle incoming updates
+update = ... # receive incoming updates from the Telegram API
+handle_update(update, TELEGRAM_BOT_API_KEY)
