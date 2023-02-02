@@ -15,7 +15,7 @@ def response(update, context):
     context.bot.send_message(chat_id=update.effective_chat.id, text=response)
 
 def main():
-    token = "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"
+    token = "6038902773:AAHzQu_lgFtf2h89GDutWLV2hK7cLg7ylFI"
     updater = Updater(token, use_context=True)
     dp = updater.dispatcher
     dp.add_handler(MessageHandler(Filters.text, response))
